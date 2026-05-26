@@ -107,3 +107,140 @@ textarea {
     z-index: 3;
     background: linear-gradient(109deg, rgba(10, 12, 16, 0.99) 15%, rgba(10, 12, 16, 0.7) 50%, rgba(10, 12, 16, 0.99) 85%);
 }
+
+/* Media Queries - Responsivo para telas menores que 900px */
+@media (max-width: 899px) {
+    body {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 30px 20px;
+        gap: 30px;
+    }
+
+    .logo-mario {
+        width: 200px;
+        margin-bottom: 20px;
+    }
+
+    .img-apresentacao {
+        width: 100%;
+        max-width: 500px;
+        margin-top: 30px;
+    }
+
+    .caixa-img {
+        width: 100%;
+        max-width: 600px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    p {
+        font-size: 18px;
+        line-height: 1.6;
+    }
+
+    button {
+        height: 40px;
+        width: 200px;
+        font-size: 18px;
+        margin-top: 20px;
+        transition: background 0.3s ease;
+    }
+
+    button:hover {
+        background: #a00d0d;
+    }
+
+    .fale-conosco {
+        width: 280px;
+        padding: 20px;
+    }
+
+    input {
+        width: 100%;
+    }
+
+    textarea {
+        width: 100%;
+    }
+}
+
+/* Tablets - até 768px */
+@media (max-width: 768px) {
+    body {
+        padding: 20px 15px;
+        gap: 20px;
+    }
+
+    .logo-mario {
+        width: 150px;
+        margin-bottom: 15px;
+    }
+
+    .img-apresentacao {
+        max-width: 400px;
+        margin-top: 20px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    button {
+        width: 180px;
+        font-size: 16px;
+    }
+
+    .fale-conosco {
+        width: 260px;
+        padding: 20px;
+    }
+}
+
+/* Mobile - até 480px */
+@media (max-width: 480px) {
+    body {
+        padding: 15px 10px;
+        gap: 15px;
+    }
+
+    .logo-mario {
+        width: 120px;
+        margin-bottom: 10px;
+    }
+
+    .img-apresentacao {
+        max-width: 280px;
+        margin-top: 15px;
+    }
+
+    p {
+        font-size: 14px;
+        margin-top: 8px;
+    }
+
+    button {
+        width: 150px;
+        height: 35px;
+        font-size: 14px;
+        margin-top: 15px;
+    }
+
+    .fale-conosco {
+        width: 250px;
+        padding: 15px;
+    }
+
+    input, textarea {
+        font-size: 13px;
+    }
+}
+

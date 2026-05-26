@@ -11,6 +11,7 @@
     <title>Super Mario</title>
 
 <body>
+    <div class="container"></div>
     <div class="video">
         <video src="/img/video.mp4" autoplay loop muted></video>
         <div class="mascara-video"></div>
@@ -36,18 +37,72 @@
 
 <script>
   let formulario = document.querySelector(".fale-conosco")
-    let mascara = document.querySelector(".mascara-form")
+  let mascara = document.querySelector(".mascara-form")
 
-
-    function cliqueiNoBotao(){
-        formulario.style.left = "700px"
-        mascara.style.visibility = "visible"
+  // Carregar dados salvos ao abrir a página
+  window.addEventListener('DOMContentLoaded', () => {
+    const dadosSalvos = localStorage.getItem('formularioMario');
+    if (dadosSalvos) {
+      const dados = JSON.parse(dadosSalvos);
+      document.querySelector('input[name="name"]').value = dados.name || '';
+      document.querySelector('input[name="telefone"]').value = dados.telefone || '';
+      document.querySelector('textarea[name="info"]').value = dados.info || '';
     }
+  });
 
-    function sumirFormulario(){
-        formulario.style.left = "-320px"
-        mascara.style.visibility = "hidden"
+  function obterPosicaoFormulario() {
+    const larguraTela = window.innerWidth;
+    
+    if (larguraTela <= 899) {
+      // Em telas pequenas, posiciona à esquerda com espaço
+      if (larguraTela <= 480) {
+        return "calc(50% - 140px)"; // Centraliza em mobile
+      } else if (larguraTela <= 768) {
+        return "20px";
+      } else {
+        return "30px";
+      }
+    } else {
+      // Em telas grandes, posiciona à direita
+      return "700px";
     }
+  }
+
+  function cliqueiNoBotao(){
+    formulario.style.left = obterPosicaoFormulario();
+    mascara.style.visibility = "visible";
+    salvarDados();
+  }
+
+  function sumirFormulario(){
+    formulario.style.left = "-320px";
+    mascara.style.visibility = "hidden";
+    salvarDados();
+  }
+
+  function salvarDados(){
+    const dados = {
+      name: document.querySelector('input[name="name"]').value,
+      telefone: document.querySelector('input[name="telefone"]').value,
+      info: document.querySelector('textarea[name="info"]').value
+    };
+    localStorage.setItem('formularioMario', JSON.stringify(dados));
+  }
+
+  // Salvar dados enquanto o usuário digita
+  document.querySelector('input[name="name"]').addEventListener('input', salvarDados);
+  document.querySelector('input[name="telefone"]').addEventListener('input', salvarDados);
+  document.querySelector('textarea[name="info"]').addEventListener('input', salvarDados);
+
+  // Fechar formulário ao clicar na máscara
+  mascara.addEventListener('click', sumirFormulario);
+
+  // Ajustar posição do formulário ao redimensionar a janela
+  window.addEventListener('resize', () => {
+    if (mascara.style.visibility === "visible") {
+      formulario.style.left = obterPosicaoFormulario();
+    }
+  });
 </script>
 
 </html>
